@@ -18,13 +18,6 @@ class ViewController: UIViewController {
             return  (cardButtons.count + 1) / 2
         }
     }
-
-//    Task 4: flip count does not belong in Controller, fix it.
-//    private (set) var flipCount = 0 {
-//        didSet {
-//              updateFlipCountLabel()
-//        }
-//    }
     
     func updateFlipCountLabel(){
         let attributes:[NSAttributedString.Key: Any] = [
@@ -76,8 +69,7 @@ class ViewController: UIViewController {
         updateFlipCountLabel()
     }
     
-    //    private var emojiChoices = ["🦇","😱","🙀","😈","👻","🎃","🍭","🍬","🍎"]
-    private var emojiChoices = "🦇😱🙀😈👻🎃🍭🍬🍎"
+    lazy var emojiChoices = game.themes[0]
     
     //    var emoji = Dictionary<Int, String>()
     private var emoji = [Card: String]()
@@ -138,7 +130,10 @@ class ViewController: UIViewController {
             game.cards[index].isFaceUp = false
             game.cards[index].isMatched = false
         }
+        
         game.cards.shuffle()  //Task 3: Shuffle the cards
+        game.themes.shuffle()
+        emojiChoices = game.themes[0]
     }
     
 }

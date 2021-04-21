@@ -15,6 +15,15 @@ struct Concentration {
 //  Task 4: flip count does not belong in Controller, fix it.
     var flipCount = 0
     
+    var themes = [
+        "🦇😱🙀😈👻🎃🍭🍬🍎",
+        "🐼🐔🐴😺🙊🐶🐑🐤🐮",
+        "🎾🏀🏈⚽️⚾️🏓🏸⛷🏏",
+        "🤓😊😃😢😔😡🥱🤣😜",
+        "🍇🥭🍓🍑🍅🍌🍒🥝🍍",
+        "⚡️☀️☔️⛄️🌈⛅️🌋⭐️🌛"
+    ]
+    
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
 //            Method 3: use of Optional
@@ -77,6 +86,7 @@ struct Concentration {
         
         //Task 3: Shuffle the cards
         cards.shuffle()
+        themes.shuffle()
         
     }
 }
