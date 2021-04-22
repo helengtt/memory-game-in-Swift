@@ -15,7 +15,8 @@ struct Concentration {
 //  Task 4: flip count does not belong in Controller, fix it.
     var flipCount = 0
     
-    var themes = [
+//   Task 5: Give the game a random theme.
+    private (set) var themes = [
         "🦇😱🙀😈👻🎃🍭🍬🍎",
         "🐼🐔🐴😺🙊🐶🐑🐤🐮",
         "🎾🏀🏈⚽️⚾️🏓🏸⛷🏏",
@@ -86,7 +87,6 @@ struct Concentration {
         
         //Task 3: Shuffle the cards
         cards.shuffle()
-        themes.shuffle()
         
     }
 }

@@ -19,6 +19,12 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBOutlet private weak var flipCountLabel: UILabel! {
+        didSet {
+            updateFlipCountLabel()
+        }
+    }
+    
     func updateFlipCountLabel(){
         let attributes:[NSAttributedString.Key: Any] = [
             .strokeWidth: 5.0,
@@ -26,12 +32,6 @@ class ViewController: UIViewController {
         ]
         let attributedString = NSAttributedString(string: "Flips: \(game.flipCount)", attributes: attributes)
         flipCountLabel.attributedText = attributedString
-    }
-    
-    @IBOutlet private weak var flipCountLabel: UILabel! {
-        didSet {
-            updateFlipCountLabel()
-        }
     }
     
     // create cardButton array
@@ -69,46 +69,55 @@ class ViewController: UIViewController {
         updateFlipCountLabel()
     }
     
-    lazy var emojiChoices = game.themes[0]
+//   Task 5: Give the game a random theme.
+//    Method 1:
+//    lazy var randomThemeIndex = Int.random(in: game.themes.indices)
+//    lazy var emojiChoices = game.themes[randomThemeIndex]
+//    Method 2:
+    private lazy var emojiChoices = game.themes[game.themes.count.arc4random]
     
     //    var emoji = Dictionary<Int, String>()
     private var emoji = [Card: String]()
     
     private func emoji(for card: Card) -> String {
         if emoji[card] == nil, emojiChoices.count > 0 {
-            //            Method 1:
+        //            Method 1:
             //            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
             //            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
-            //            Method 2: protocol
+        //            Method 2: protocol
             //            emoji[card] = emojiChoices.remove(at: emojiChoices.count.arc4random)
-            
+        //            Method 3:
             let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
             emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
-            
+//            print("emoji card:\(emoji[card])")
         }
-        
+    
+//        Method 1:
     //      if emoji[card.identifier] != nil {
     //          return emoji[card.identifier]!
     //      } else {
     //          return "?"
     //      }
-    //    the above is the same as below:
+//        Method 2:
         return emoji[card] ?? "?"
 
     }
     
-    // Task 2: start a new game
-    //
-    @IBOutlet weak var newGameButton: UIButton! {
-        didSet {
-            hiddenNewGameButton ()
-        }
-    }
+//  Task 2: Start a new game
+//
+    @IBOutlet weak var newGameButton: UIButton!
+//    @IBOutlet weak var newGameButton: UIButton! {
+//        didSet {
+//            hiddenNewGameButton ()
+//        }
+//    }
     @IBAction func newGameButton(_ sender: UIButton) {
         game.flipCount = 0
         resetCards()
+        emojiChoices = game.themes[game.themes.count.arc4random]
         updateViewFromModel ()
-        hiddenNewGameButton ()
+        print(emojiChoices)
+//        hiddenNewGameButton ()
     }
     
     private func hiddenNewGameButton () {
@@ -130,10 +139,9 @@ class ViewController: UIViewController {
             game.cards[index].isFaceUp = false
             game.cards[index].isMatched = false
         }
-        
+        emoji = [Card: String]() //Task 5: Give the game a random theme.
         game.cards.shuffle()  //Task 3: Shuffle the cards
-        game.themes.shuffle()
-        emojiChoices = game.themes[0]
+        
     }
     
 }
