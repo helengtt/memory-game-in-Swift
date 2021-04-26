@@ -25,6 +25,8 @@ struct Concentration {
         "⚡️☀️☔️⛄️🌈⛅️🌋⭐️🌛"
     ]
     
+    var score = 0  //  Task 6: Add a game score
+    
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
 //            Method 3: use of Optional
@@ -55,19 +57,44 @@ struct Concentration {
         }
     }
     
+    // check if cards match
+    mutating func handleMatchOrNot(index: Int) {
+        let matchIndex = indexOfOneAndOnlyFaceUpCard!
+        if cards[matchIndex] == cards[index] {
+            cards[matchIndex].isMatched = true
+            cards[index].isMatched = true
+            score = score + 2
+            print("Score: \(score)")
+        } else { // if cards not match
+            if (cards[matchIndex].cardClick > 1) {
+                score = score - 1
+                print("Score: \(score)")
+            }
+            if (cards[index].cardClick > 1) {
+                score = score - 1
+                print("Score: \(score)")
+            }
+
+        }
+    }
+    
+    // check if cards match
     mutating func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at:\(index)): chosen index not in the cards")
+        
+//      Task 6: Add a game score
+        // count clicks for each card
+        cards[index].cardClick += 1
+        print("Card [\(index)] click: \(cards[index].cardClick)")
+        
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
-                // check if cards match
-                if cards[matchIndex] == cards[index] {
-                    cards[matchIndex].isMatched = true
-                    cards[index].isMatched = true
-                }
+                handleMatchOrNot(index: index)
                 cards[index].isFaceUp = true
 //                indexOfOneAndOnlyFaceUpCard = nil
             } else {
                 // either no card or 2 cards are face up
+                
 //                for flipDownIndex in cards.indices {
 //                    cards[flipDownIndex].isFaceUp = false
 //                }

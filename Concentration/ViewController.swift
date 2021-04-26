@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     //    As of type inference, Swift can figure out from the line of code, the game is of type Concentration.
     private lazy var game = Concentration(numberOfPairsOfCards:numberOfPairsOfCards)
 
-    var numberOfPairsOfCards:Int {
+    private var numberOfPairsOfCards:Int {
         get {
             return  (cardButtons.count + 1) / 2
         }
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateFlipCountLabel(){
+    private func updateFlipCountLabel(){
         let attributes:[NSAttributedString.Key: Any] = [
             .strokeWidth: 5.0,
             .strokeColor: #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
@@ -52,7 +52,6 @@ class ViewController: UIViewController {
     }
     
     private func updateViewFromModel () {
-        print("")
         for index in cardButtons.indices {
             let button = cardButtons[index]
             let card = game.cards[index]
@@ -67,6 +66,7 @@ class ViewController: UIViewController {
             }
         }
         updateFlipCountLabel()
+        updateScoreLabel ()
     }
     
 //   Task 5: Give the game a random theme.
@@ -99,25 +99,25 @@ class ViewController: UIViewController {
     //          return "?"
     //      }
 //        Method 2:
+//        use ?? to create an expression which “defaults” to a value if an Optional is not set
         return emoji[card] ?? "?"
 
     }
     
 //  Task 2: Start a new game
-//
-    @IBOutlet weak var newGameButton: UIButton!
-//    @IBOutlet weak var newGameButton: UIButton! {
-//        didSet {
-//            hiddenNewGameButton ()
-//        }
-//    }
+    @IBOutlet weak var newGameButton: UIButton! {
+        didSet {
+            hiddenNewGameButton ()
+        }
+    }
     @IBAction func newGameButton(_ sender: UIButton) {
+        game = Concentration(numberOfPairsOfCards:numberOfPairsOfCards)
         game.flipCount = 0
-        resetCards()
+//        resetCards()
         emojiChoices = game.themes[game.themes.count.arc4random]
         updateViewFromModel ()
-        print(emojiChoices)
-//        hiddenNewGameButton ()
+//        print(emojiChoices)
+        hiddenNewGameButton ()
     }
     
     private func hiddenNewGameButton () {
@@ -144,7 +144,20 @@ class ViewController: UIViewController {
         
     }
     
+    // Task 6: Add a game score
+    
+    @IBOutlet private weak var scoreLabel: UILabel! {
+        didSet {
+            updateScoreLabel ()
+        }
+    }
+    
+    private func updateScoreLabel () {
+        scoreLabel.text = "Score: \(game.score)"
+    }
+
 }
+
 
 
 

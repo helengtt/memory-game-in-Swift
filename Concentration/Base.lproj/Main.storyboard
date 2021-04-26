@@ -207,6 +207,12 @@
                                     <action selector="newGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TkH-n9-cMy"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-oL-8aJ">
+                                <rect key="frame" x="7" y="837" width="73" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" systemColor="systemOrangeColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -214,17 +220,22 @@
                             <constraint firstItem="vxI-th-30b" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3hU-Oe-B6I"/>
                             <constraint firstItem="yd0-7q-6st" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3xu-LT-cRA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vxI-th-30b" secondAttribute="bottom" id="FDD-ES-rzp"/>
+                            <constraint firstItem="zCR-LJ-80t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="PC1-wR-28S"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zCR-LJ-80t" secondAttribute="trailing" constant="20" id="VHF-YI-QwS"/>
                             <constraint firstItem="Qna-Jz-m3X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="c6y-yC-NuV"/>
                             <constraint firstItem="zCR-LJ-80t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dWY-ag-vxL"/>
+                            <constraint firstItem="4ba-oL-8aJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="7" id="f78-m4-oyD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yd0-7q-6st" secondAttribute="bottom" constant="65" id="tmG-zT-T7Q"/>
                             <constraint firstItem="yd0-7q-6st" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zCR-LJ-80t" secondAttribute="bottom" constant="35" id="vKM-63-bz8"/>
                             <constraint firstItem="zCR-LJ-80t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="x60-hU-STG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4ba-oL-8aJ" secondAttribute="bottom" constant="1" id="yOO-zt-jyD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ScoreLabel" destination="4ba-oL-8aJ" id="hr6-Ov-JQM"/>
                         <outlet property="flipCountLabel" destination="vxI-th-30b" id="4SI-Rz-T6L"/>
                         <outlet property="newGameButton" destination="yd0-7q-6st" id="ipM-Pr-dUg"/>
+                        <outlet property="scoreLabel" destination="4ba-oL-8aJ" id="dlo-Ph-ADD"/>
                         <outletCollection property="cardButtons" destination="Qna-Jz-m3X" collectionClass="NSMutableArray" id="cZY-Zg-frZ"/>
                         <outletCollection property="cardButtons" destination="YaI-Fu-ami" collectionClass="NSMutableArray" id="wQw-v2-rMg"/>
                         <outletCollection property="cardButtons" destination="UdL-ea-jJ3" collectionClass="NSMutableArray" id="F7B-Nm-GKo"/>

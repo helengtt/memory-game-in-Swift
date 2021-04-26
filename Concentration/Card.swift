@@ -18,6 +18,7 @@ struct Card:Hashable
     var isFaceUp = false
     var isMatched = false
     private var identifier: Int
+    var cardClick = 0   // Task 6: Add a game score
     
     private static var identiferFactory = 0
     
