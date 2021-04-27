@@ -58,8 +58,7 @@ struct Concentration {
     }
     
     // check if cards match
-    mutating func handleMatchOrNot(index: Int) {
-        let matchIndex = indexOfOneAndOnlyFaceUpCard!
+    mutating func handleMatchOrNot(matchIndex: Int, index: Int) {
         if cards[matchIndex] == cards[index] {
             cards[matchIndex].isMatched = true
             cards[index].isMatched = true
@@ -89,7 +88,7 @@ struct Concentration {
         
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
-                handleMatchOrNot(index: index)
+                handleMatchOrNot(matchIndex: matchIndex, index: index)
                 cards[index].isFaceUp = true
 //                indexOfOneAndOnlyFaceUpCard = nil
             } else {
