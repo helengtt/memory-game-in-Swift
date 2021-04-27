@@ -112,8 +112,6 @@ class ViewController: UIViewController {
     }
     @IBAction func newGameButton(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards:numberOfPairsOfCards)
-        game.flipCount = 0
-//        resetCards()
         emojiChoices = game.themes[game.themes.count.arc4random]
         updateViewFromModel ()
 //        print(emojiChoices)
@@ -134,18 +132,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func resetCards () {
-        for index in game.cards.indices {
-            game.cards[index].isFaceUp = false
-            game.cards[index].isMatched = false
-        }
-        emoji = [Card: String]() //Task 5: Give the game a random theme.
-        game.cards.shuffle()  //Task 3: Shuffle the cards
-        
-    }
-    
-    // Task 6: Add a game score
-    
+//      Task 6: Add a game score
     @IBOutlet private weak var scoreLabel: UILabel! {
         didSet {
             updateScoreLabel ()
